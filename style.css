@@ -1,0 +1,23 @@
+body {
+  background-color: rgb(154, 128, 185);
+}
+
+.title-Container {
+  text-align: center;
+}
+
+section {
+  margin: auto;
+  width: 50%;
+  border: 3px solid yellow;
+  padding: 10px;
+}
+
+#question-container,
+.section-Bottom {
+  text-align: center;
+}
+
+.noShow {
+  display: none;
+}
