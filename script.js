@@ -36,20 +36,22 @@ const question4 = {
 const friendsQuestions = [question1, question2, question3, question4];
 
 let score = 0;
-let currentQuestion;
+// let currentQuestion;
+
+let randNum = function() {
+  return Math.floor(Math.random() * friendsQuestions.length);
+};
+
+let currentQuestion = friendsQuestions[randNum()];
 
 //---------------------------------------------------------------------------
 button.addEventListener("click", function(e) {
-  // button.textContent = "Next Question!";
-  // quizContainer.innerHTML = "";
-  let randNum = Math.floor(Math.random() * friendsQuestions.length);
-  currentQuestion = friendsQuestions[randNum];
-
   const html = `<p id="main-Question" class="question">${currentQuestion.question}</p >`;
   quizContainer.insertAdjacentHTML("beforeend", html);
 
   showAnswer(currentQuestion.answers);
   button.classList.add("noShow");
+  buttTwo.classList.remove("noShow");
 });
 
 //---------------------------------------------------------------------------
@@ -67,25 +69,26 @@ const showAnswer = function(answerList) {
 buttTwo.addEventListener("click", function(e) {
   const Ans = document.querySelector("input[name='question']:checked").value;
   const index = friendsQuestions.indexOf(currentQuestion);
+
   if (index > -1) {
     friendsQuestions.splice(index, 1);
-    console.log(friendsQuestions);
+    // console.log(friendsQuestions);
+  } else {
+    console.log("GAME HAS ENDED");
   }
 
   if (Ans == currentQuestion.correctAnswer) {
-    console.log("Correct!");
+    // console.log("Correct!");
     score = score + 1;
     scoreCard.textContent = `Score: ${score}`;
-    console.log(score);
+    // console.log(score);
   } else {
-    console.log(`sorry, the answer is ${currentQuestion.correctAnswer}`);
-    console.log(score);
+    // console.log(`sorry, the answer is ${currentQuestion.correctAnswer}`);
+    // console.log(score);
   }
 
   quizContainer.innerHTML = "";
-  let randNum = Math.floor(Math.random() * friendsQuestions.length);
-
-  currentQuestion = friendsQuestions[randNum];
+  currentQuestion = friendsQuestions[randNum()];
 
   const html = `<p id="main-Question" class="question">${currentQuestion.question}</p >`;
   quizContainer.insertAdjacentHTML("beforeend", html);
